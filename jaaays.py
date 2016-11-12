@@ -54,11 +54,11 @@ def line():
 			b += im.getpixel((i, j))[2]
 	r /= 2052
 	g /= 2052
-	b /= 2052
+	b /= 2052 # change this so it looks at the past 10 secs or something
 	if r > 200 and g > 200 and b > 200:
-		r2 = "The line is short."
+		r2 = "The line at Jay's Place is short."
 	else:
-		r2 = "The line is long."
+		r2 = "The line at Jay's Place is relatively long."
 	if debug:
 		r2 += "\n   rgb = " + str((r, g, b))
 	print r2
@@ -71,7 +71,8 @@ while True:
 	r1 = brightness()
 	r2 = line()
 	# os.remove(f)
-	with open('out.txt', 'wb') as fi:
-		fi.write('"' + r1 + '", ' +
-				 '"' + r2 + '", ')
+	with open('out_open.txt', 'wb') as fi:
+		fi.write(r1)
+	with open('out_line.txt', 'wb') as fi:
+		fi.write(r2)
 	time.sleep(1.0 - ((time.time() - starttime) % 1.0))
