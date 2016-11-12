@@ -8,6 +8,9 @@ import sys
 
 response = "I don't know what you mean, sorry."
 debug = False
+if len(sys.argv) > 1:
+	if sys.argv[1] == "debug":
+		debug = True
 f = "img/capture.jpg"
 
 # modified from http://stackoverflow.com/a/21844162
@@ -31,14 +34,17 @@ def brightness():
 	stat = ImageStat.Stat(im)
 	brightness = stat.mean[0]
 	if (brightness < 70):
-		r = "Jay's Place is closed."
+		r1 = "Jay's Place is closed."
 	else:
-		r = "The lights are on, so Jay's Place is most likely open!"
+		r1 = "The lights are on, so Jay's Place is most likely open!"
 	if debug:
-		r += "(" + str(brightness) + ")"
-	print r
+		r1 += " (" + str(brightness) + ")"
+	print r1
+	return r1
 
 
 grabimg()
-brightness()
+r1 = brightness()
 os.remove(f)
+with open('out.txt', 'wb') as fi:
+	fi.write('"' + r1 + '", ')
