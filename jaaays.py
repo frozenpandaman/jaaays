@@ -40,7 +40,7 @@ def brightness():
 		r1 = "The lights are on, so Jay's Place is most likely open!"
 	if debug:
 		r1 += "\n   brightness = " + str(brightness)
-	print r1
+	#print r1
 	return r1
 
 def line():
@@ -61,7 +61,7 @@ def line():
 		r2 = "The line at Jay's Place is relatively long."
 	if debug:
 		r2 += "\n   rgb = " + str((r, g, b))
-	print r2
+	#print r2
 	return r2
 
 
