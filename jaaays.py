@@ -50,7 +50,7 @@ def brightness():
 	print r1
 	return r1
 
-# def line():
+# def naiveline():
 # 	im = Image.open(f).convert('RGB')
 # 	w_st, h_st, w_end, h_end = 15, 130, 42, 206
 # 	r, g, b = 0, 0, 0
@@ -114,11 +114,14 @@ def line():
 		r2 = "There's nobody in line."
 	elif HeadCount == 1:
 		r2 = "There's 1 person in line."
+		# cv2.imwrite('spoopy.jpg',image)
 	else:
 		r2 = "There's about " + str(len(pick)) + " people in line."
 	print r2
 	return r2
 
+def pool():
+	pass
 
 starttime = time.time()
 while True:
