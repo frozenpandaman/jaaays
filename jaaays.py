@@ -50,28 +50,28 @@ def brightness():
 	print r1
 	return r1
 
-def line():
-	im = Image.open(f).convert('RGB')
-	w_st, h_st, w_end, h_end = 15, 130, 42, 206
-	r, g, b = 0, 0, 0
-	for i in xrange(w_st, w_end):
-		for j in xrange(h_st, h_end):
-			r += im.getpixel((i, j))[0]
-			g += im.getpixel((i, j))[1]
-			b += im.getpixel((i, j))[2]
-	r /= 2052
-	g /= 2052
-	b /= 2052 # change this so it looks at the past 10 secs or something
-	if r > 200 and g > 200 and b > 200:
-		r2 = "The line at Jay's Place is short."
-	else:
-		r2 = "The line at Jay's Place is relatively long."
-	if debug:
-		r2 += "\n   rgb = " + str((r, g, b))
-	print r2
-	return r2
+# def line():
+# 	im = Image.open(f).convert('RGB')
+# 	w_st, h_st, w_end, h_end = 15, 130, 42, 206
+# 	r, g, b = 0, 0, 0
+# 	for i in xrange(w_st, w_end):
+# 		for j in xrange(h_st, h_end):
+# 			r += im.getpixel((i, j))[0]
+# 			g += im.getpixel((i, j))[1]
+# 			b += im.getpixel((i, j))[2]
+# 	r /= 2052
+# 	g /= 2052
+# 	b /= 2052 # change this so it looks at the past 10 secs or something
+# 	if r > 200 and g > 200 and b > 200:
+# 		r2 = "The line at Jay's Place is short."
+# 	else:
+# 		r2 = "The line at Jay's Place is relatively long."
+# 	if debug:
+# 		r2 += "\n   rgb = " + str((r, g, b))
+# 	print r2
+# 	return r2
 
-def lineCount():
+def line():
 	hog = cv2.HOGDescriptor()
 	hog.setSVMDetector(cv2.HOGDescriptor_getDefaultPeopleDetector())
 
@@ -111,13 +111,13 @@ def lineCount():
 
 	HeadCount = len(pick)
 	if HeadCount == 0:
-		r3 = "There's nobody in line."
+		r2 = "There's nobody in line."
 	elif HeadCount == 1:
-		r3 = "There's 1 person in line."
+		r2 = "There's 1 person in line."
 	else:
-		r3 = "There's about " + str(len(pick)) + " people in line."
-	print r3
-	return r3
+		r2 = "There's about " + str(len(pick)) + " people in line."
+	print r2
+	return r2
 
 
 starttime = time.time()
@@ -130,8 +130,6 @@ while True:
 		fi.write(r1)
 	with open('out_line.txt', 'wb') as fi:
 		fi.write(r2)
-	with open('out_count.txt', 'wb') as fi:
-		fi.write(r3)
 	time.sleep(1.0 - ((time.time() - starttime) % 1.0))
 
 
