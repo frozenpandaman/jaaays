@@ -38,13 +38,35 @@ def brightness():
 	else:
 		r1 = "The lights are on, so Jay's Place is most likely open!"
 	if debug:
-		r1 += " (" + str(brightness) + ")"
+		r1 += "\n   brightness = " + str(brightness)
 	print r1
 	return r1
 
+def line():
+	im = Image.open(f).convert('RGB')
+	w_st, h_st, w_end, h_end = 15, 130, 42, 206
+	r, g, b = 0, 0, 0
+	for i in xrange(w_st, w_end):
+		for j in xrange(h_st, h_end):
+			r += im.getpixel((i, j))[0]
+			g += im.getpixel((i, j))[1]
+			b += im.getpixel((i, j))[2]
+	r /= 2052
+	g /= 2052
+	b /= 2052
+	if r > 200 and g > 200 and b > 200:
+		r2 = "The line is short."
+	else:
+		r2 = "The line is long."
+	if debug:
+		r2 += "\n   rgb = " + str((r, g, b))
+	print r2
+	return r2
 
 grabimg()
 r1 = brightness()
-os.remove(f)
+r2 = line()
+# os.remove(f)
 with open('out.txt', 'wb') as fi:
-	fi.write('"' + r1 + '", ')
+	fi.write('"' + r1 + '", ' +
+			 '"' + r2 + '", ')
