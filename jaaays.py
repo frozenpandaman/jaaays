@@ -3,6 +3,7 @@ from PIL import Image
 from PIL import ImageStat
 import os
 import sys
+import time
 
 # (484) ALG-JAYS
 
@@ -63,10 +64,14 @@ def line():
 	print r2
 	return r2
 
-grabimg()
-r1 = brightness()
-r2 = line()
-# os.remove(f)
-with open('out.txt', 'wb') as fi:
-	fi.write('"' + r1 + '", ' +
-			 '"' + r2 + '", ')
+
+starttime = time.time()
+while True:
+	grabimg()
+	r1 = brightness()
+	r2 = line()
+	# os.remove(f)
+	with open('out.txt', 'wb') as fi:
+		fi.write('"' + r1 + '", ' +
+				 '"' + r2 + '", ')
+	time.sleep(1.0 - ((time.time() - starttime) % 1.0))
